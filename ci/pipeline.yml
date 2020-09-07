@@ -1,0 +1,60 @@
+resource_types:
+  - name: terraform
+    type: docker-image
+    source:
+      repository: ljfranklin/terraform-resource
+      tag: latest
+
+resources:
+  - name: git
+    type: git
+    source:
+      uri: ((git_uri))
+      branch: master
+
+  - name: terraform
+    type: terraform
+    source:
+      terraform_source: git/terraform
+      env_name: ((environment))
+      delete_on_failure: true
+      backend_type: s3
+      backend_config:
+        access_key: ((aws_access_key))
+        secret_key: ((aws_secret_key))
+        bucket: ((s3_bucket))
+        region: ((aws_region))
+        key: cluster/terraform.tfstate
+
+jobs:
+  - name: create-cluster
+    public: true
+    plan:
+      - get: git
+        params: {depth: 1}
+      - put: terraform
+        params:
+          env_name: ((environment))
+          plan_only: ((plan_only))
+          vars:
+            access_key: ((aws_access_key))
+            secret_key: ((aws_secret_key))
+            region: ((aws_region))
+            instance_type: ((instance_type))
+            restricted_cidr: ((restricted_cidr))
+            s3_bucket: ((s3_bucket))
+            source_dir: "/tmp/build/put/git"
+
+  - name: destroy-cluster
+    plan:
+      - get: git
+        params: {depth: 1}
+      - put: terraform
+        params:
+          env_name: ((environment))
+          action: destroy
+          vars:
+            access_key: ((aws_access_key))
+            secret_key: ((aws_secret_key))
+        get_params:
+          action: destroy

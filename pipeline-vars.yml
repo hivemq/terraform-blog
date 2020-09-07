@@ -1,0 +1,15 @@
+git_uri: https://github.com/hivemq/terraform-blog.git
+
+plan_only: false
+environment: dev
+
+aws_access_key: <aws-access-key>
+aws_secret_key: <aws-secret-key>
+s3_bucket: <s3-bucket-name>
+
+aws_region: eu-west-1
+instance_type: t3.medium
+
+# restrict access for a limited number of IPs
+# example ["91.10.129.221/32"], allows only access from one IP address
+restricted_cidr: ["0.0.0.0/0"]

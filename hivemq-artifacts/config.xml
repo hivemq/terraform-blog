@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<hivemq>
+    <listeners>
+        <tcp-listener>
+            <port>1883</port>
+            <bind-address>${PRIVATE_IP}</bind-address>
+            <proxy-protocol>true</proxy-protocol>
+        </tcp-listener>
+    </listeners>
+    <control-center>
+        <listeners>
+            <http>
+                <port>8080</port>
+                <bind-address>${PRIVATE_IP}</bind-address>
+            </http>
+        </listeners>
+    </control-center>
+    <cluster>
+        <enabled>true</enabled>
+        <transport>
+            <tcp>
+                <bind-address>${PRIVATE_IP}</bind-address>
+                <bind-port>7800</bind-port>
+            </tcp>
+        </transport>
+        <discovery>
+            <extension/>
+        </discovery>
+    </cluster>
+</hivemq>
