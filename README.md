@@ -19,13 +19,13 @@ https://www.hivemq.com/blog/setup-hivemq-with-concourse-pipeline/
   - Install Concourse CLI tool _fly_. [Instructions are here.](https://concourse-ci.org/fly.html)
 - Clone this repository
 - Add necessary parameters to the _"pipeline-vars.yml"_ file
-- Use the associated Makefile:  
+- Use the associated makefile:  
   `make login`  
   `make create-cluster`
   
 ---  
 
-HiveMQ is a fully compatible MQTT 3.1.1 and 5.0 Broker. Find more information on HiveMQ here:
+HiveMQ is a fully compatible MQTT 3.1.1 and 5.0 broker. Find more information on HiveMQ here:
 - [HiveMQ documentation](https://www.hivemq.com/docs/hivemq/)
 - [HiveMQ community forum](https://community.hivemq.com/)
 
@@ -36,5 +36,4 @@ Read and see more from the HiveMQ team here:
 - [MQTT Essentials](https://www.hivemq.com/mqtt-essentials/) and  [MQTT 5 Essentials](https://www.hivemq.com/mqtt-5/) 
 ---
 
-
-License: [LICENSE](LICENSE) 
+License: [Apache 2.0 license](LICENSE) 
